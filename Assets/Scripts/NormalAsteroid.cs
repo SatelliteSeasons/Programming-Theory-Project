@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class NormalAsteroid : Asteroid // INHERITANCE
 {
-    
+    [SerializeField] private ParticleSystem explosion;
+    [SerializeField] private MainManager mainManager;
+
     void Start()
     {
-        
+        mainManager = GameObject.Find("MainManager").GetComponent<MainManager>();
+        explosion = mainManager.explosion;
     }
 
     private void Update()
     {
-        MoveForward();
+        MoveForward(); //POLYMORPHISME
     }
 
     public void OnTriggerEnter(Collider other)

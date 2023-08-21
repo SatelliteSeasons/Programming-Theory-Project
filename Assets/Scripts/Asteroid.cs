@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
-    protected float speed = 6;
-    protected ParticleSystem explosion;
+    protected float speed = 5;
 
     private void Start()
     {

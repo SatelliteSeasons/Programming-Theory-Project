@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    [SerializeField] GameObject normalProjectilePrefab;
+    [SerializeField] GameObject projectilePrefab;
     [SerializeField] ReloadScript reload;
 
     private float maxRangeX = 10;
-    private float inputHorizontal;
+    private float inputHorizontal; //Encapsulation
     private float speed = 23;
 
     private Vector3 startingPosition = new Vector3(0, -3, 0);
@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     { 
         this.transform.position = startingPosition;
+        reload = GameObject.Find("Reload Circle").GetComponent<ReloadScript>();
+        projectilePrefab = reload.GetProjectile();
     }
 
     // Update is called once per frame
@@ -26,7 +28,12 @@ public class PlayerController : MonoBehaviour
         inputHorizontal = Input.GetAxis("Horizontal");
         this.transform.Translate(Vector3.right * inputHorizontal * speed * Time.deltaTime);
         MaxRangePosition();
-        Fire();
+        Fire(); //Abstraction
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            reload.Reload();
+            projectilePrefab = reload.GetProjectile();
+        }
         
     }
 
@@ -46,8 +53,10 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space)  )  
         {
-            Instantiate(normalProjectilePrefab, this.transform.position, this.transform.rotation);
+            Instantiate(this.projectilePrefab, this.transform.position, this.transform.rotation);
         }
     }
+
+
 
 }
