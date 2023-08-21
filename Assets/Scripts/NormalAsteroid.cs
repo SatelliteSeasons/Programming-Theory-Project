@@ -15,7 +15,7 @@ public class NormalAsteroid : Asteroid // INHERITANCE
 
     private void Update()
     {
-        MoveForward(); //POLYMORPHISME
+        MoveForward();
     }
 
     public void OnTriggerEnter(Collider other)

@@ -7,6 +7,7 @@ public class BlueAsteroid : Asteroid
     [SerializeField] private ParticleSystem explosion;
     [SerializeField] private MainManager mainManager;
 
+    private float speedBlue = 3;
     private float speedPas = 20f;
     void Start()
     {
@@ -20,9 +21,9 @@ public class BlueAsteroid : Asteroid
         MoveForward();
     }
 
-    protected override void MoveForward()
+    protected override void MoveForward() //POLYMORPHISME
     {
-        this.transform.Translate(Vector3.down * base.speed * Time.deltaTime);
+        this.transform.Translate(Vector3.down * speedBlue * Time.deltaTime);
         StartCoroutine(PasChasser());
     }
 
