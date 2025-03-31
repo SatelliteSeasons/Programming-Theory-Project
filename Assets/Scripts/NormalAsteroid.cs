@@ -23,8 +23,10 @@ public class NormalAsteroid : Asteroid // INHERITANCE
         if (other.gameObject.CompareTag("NormalProjectile"))
         {
             Destroy(other.gameObject);
-            Instantiate(this.explosion, this.transform.position, this.transform.rotation);
+            ParticleSystem ps = Instantiate(this.explosion, this.transform.position, this.transform.rotation);
             Destroy(this.gameObject);
+            MainManager.Instance.GameEnd();
+            Destroy(ps, 2f);
         }
     }
 }

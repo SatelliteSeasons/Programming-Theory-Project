@@ -5,17 +5,33 @@ using UnityEngine;
 public class MainManager : MonoBehaviour
 {
     public ParticleSystem explosion;
+    public static MainManager Instance;
 
+    private bool isGameOn;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-
+        if(Instance != null)
+        {
+            Destroy(gameObject);
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void GameStart()
     {
-        
+        isGameOn = true;
     }
+
+    public void GameEnd()
+    {
+        isGameOn = false;
+    }
+
+    public bool GetIsGameOn()
+    {
+        return isGameOn;
+    }
+
 }

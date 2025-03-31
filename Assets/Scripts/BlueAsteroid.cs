@@ -62,8 +62,10 @@ public class BlueAsteroid : Asteroid
         if (other.gameObject.CompareTag("BlueProjectile"))
         {
             Destroy(other.gameObject);
-            Instantiate(this.explosion, this.transform.position, this.transform.rotation);
+            ParticleSystem ps = Instantiate(this.explosion, this.transform.position, this.transform.rotation);
             Destroy(this.gameObject);
+            MainManager.Instance.GameEnd();
+            Destroy(ps, 2.0f);
         }
     }
 }
